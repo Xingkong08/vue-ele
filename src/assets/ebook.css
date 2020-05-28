@@ -1,0 +1,395 @@
+/*@charset "utf-8";
+
+
+#control {
+	height: 40px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0px;
+	line-height: 40px;
+	background-color: whitesmoke;
+    border-bottom: solid 1px gainsboro;
+}
+
+.btn {
+    float: right;
+    display: inline-block;
+    color: #2368e7;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0 3%;
+}
+
+.btn:hover {
+	cursor: pointer
+}
+
+
+!* CSS Document *!
+body {
+    font-family:宋体;
+    font-size: 100%;
+	padding: 10px 20px 50px 20px;
+	font-size: 1.100em;
+}
+
+a {
+    text-decoration: none;
+}*/
+
+/*一级标题*/
+h1.Sequence, h1.chapterCaption, p.chapterCaption {
+    font-size: 1.700em;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.5000em;
+}
+
+/*二级标题*/
+h2.sectionHeading, p.sectionHeading {
+    font-size: 1.500em;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.5000em;
+}
+
+/*二级副题*/
+.subHead {
+    font-size: 1.000em;
+    text-align: right;
+    font-weight: 600;
+    line-height: 1.0000em;
+}
+
+/*三级标题*/
+h3.listHeadline, p.listHeadline {
+    font-size: 1.200em;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.5000em;
+}
+
+/*四级标题*/
+h4.lastTitle, p.lastTitle {
+    font-size: 1.300em;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.5000em;
+}
+
+/*五级标题*/
+h5.fiveTitle, p.fiveTitle {
+    font-size: 1.300em;
+    text-align: left;
+    font-weight: 800;
+    line-height: 1.5000em;
+}
+
+/*六级标题*/
+h6.sixTitle, p.sixTitle {
+    font-size: 0.85em;
+    line-height: 1.3em;
+    text-align: left;
+    text-indent: 0;
+    margin: 3pt 0;
+    /* letter-spacing:auto; */
+}
+
+/*正文内容*/
+.bodyContent {
+    font-size: 1.000em;
+    text-indent: 2em;
+    text-align: justify;
+    line-height: 1.5000em;
+}
+
+/*诗词*/
+.rightAuther {
+    font-size: 1.0em;
+    text-align: right;
+    line-height: 0.8em;
+    /* letter-spacing:auto; */
+}
+
+
+.dyfirst {
+    font-size: 1em;
+    line-height: 1.5em;
+    text-indent: 1.5em;
+    text-align: justify;
+    margin: 10pt 0;
+    /*letter-spacing:auto;*/
+}
+
+/*首行文字下沉效果*/
+.dyfirst:first-letter {
+    font-size: 150%;
+    font-weight: bold;
+    color: #c36500;
+}
+
+
+/*正文图表*/
+.bodyPic {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0%;
+}
+
+/*诗词*/
+.bodyPoem {
+    color: #008040;
+    font-size: 1.0em;
+    text-align: center;
+    line-height: 0.8em;
+    /* letter-spacing:auto; */
+}
+
+span.empty{
+    padding: 0 1em;
+}
+/*注释*/
+span.note{
+    font-size: 0.850em;
+    text-align: justify;
+    line-height: 1.5000em;
+    color: #a25400;
+}
+
+/*诗词作者*/
+.conAuthor {
+    font-size: 0.9em;
+    text-align: right;
+    line-height: 1.5em;
+    padding-right: 4em;
+    /* letter-spacing:auto; */
+}
+
+/*数字上标*/
+span.super {
+    font-size: 0.7em;
+    vertical-align: super;
+}
+
+/*数字下标*/
+span.sub {
+    font-size: 0.7em;
+    vertical-align: sub;
+}
+
+/*跳转注标*/
+span.subScript {
+    font-size: 0.7em;
+    vertical-align: super;
+}
+
+/*加粗*/
+.bold {
+    font-weight: 700;
+}
+
+/*右对齐*/
+.right {
+    text-align: right;
+    text-indent: 0;
+}
+
+.color {
+    color: #a25400;
+}
+
+/*其它缩进12像素*/
+.indentS {
+    font-size: 1.1em;
+    font-weight: bold;
+	text-indent: 0.5em;
+    margin: 5pt 0;
+}
+
+/*其它缩进36像素*/
+.indentT {
+	text-indent: 2em;
+    margin: 5pt 0;
+}
+
+/*其它缩进60像素*/
+.indentF {
+	text-indent: 4em;
+    margin: 5pt 0;
+}
+
+/*正文中生僻字图片代替*/
+.rareFont {
+    width: 0.8em;
+}
+
+
+
+
+/*覆盖最新*//*覆盖最新*//*覆盖最新*//*覆盖最新*//*覆盖最新*//*覆盖最新*/
+
+
+/*一级标题*/
+p.firstTitle {
+    font-size: 2.0em;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.2em;
+}
+
+/*二级标题*/
+p.secondTitle {
+    font-size: 1.7em;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.2em;
+}
+
+/*三级标题*/
+p.thirdTitle {
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.2em;
+}
+
+/*四级标题*/
+p.fourthTitle {
+    font-size: 1.4em;
+    text-align: left;
+    font-weight: bold;
+    line-height: 1.2em;
+}
+
+/*五级标题*/
+p.fifthTitle {
+    font-size: 1.3em;
+    text-align: left;
+    font-weight: bold;
+    line-height: 1.1em;
+    text-indent: 1em;
+}
+
+/*正文内容*/
+.bodyContent {
+    font-size: 1.0em;
+    text-indent: 2em;
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+/*注释*/
+span.note {
+    font-size: 0.85em;
+    text-align: justify;
+    line-height: 1.5em;
+    color: #a25400;
+}
+
+p.note {
+    font-size: 0.9em;
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+
+/*诗词*/
+.bodyPoem {
+    color: #008040;
+    font-size: 1.0em;
+    text-align: center;
+    line-height: 0.8em;
+}
+
+/*诗词靠左*/
+.leftPoem {
+    color: #008040;
+    font-size: 1.0em;
+    text-align: left;
+    text-indent: 2em;
+    line-height: 0.8em;
+}
+
+/*诗词中间空格*/
+span.empty {
+    padding: 0 1em;
+}
+
+/*正文作者*/
+.rightAuther {
+    font-size: 1.0em;
+    text-align: right;
+    line-height: 0.8em;
+}
+
+/*正文内容 带有首字效果*/
+.dyFirstContent {
+    font-size: 1.0em;
+    text-indent: 2em;
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+/*首行文字下沉效果*/
+.dyFirstContent:first-letter {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #c36500;
+}
+
+
+/*正文图表*/
+.bodyPic {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0%;
+}
+
+
+/*数字上标*/
+span.super {
+    font-size: 0.7em;
+    vertical-align: super;
+}
+
+/*数字下标*/
+span.sub {
+    font-size: 0.7em;
+    vertical-align: sub;
+}
+
+p.annotation {
+    margin: 20pt 0;
+    border-bottom: black 1px solid;
+}
+
+
+.color {
+    color: #a25400;
+}
+
+/*其它缩进12像素*/
+.indentS {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-indent: 0.5em;
+    margin: 5pt 0;
+}
+
+/*其它缩进36像素*/
+.indentT {
+    text-indent: 2em;
+    margin: 5pt 0;
+}
+
+/*其它缩进60像素*/
+.indentF {
+    text-indent: 4em;
+    margin: 5pt 0;
+}
+
+/*正文中生僻字图片代替*/
+.rareFont {
+    width: 0.8em;
+}
