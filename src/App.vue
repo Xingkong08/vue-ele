@@ -32,9 +32,6 @@
                     <el-dropdown-item>
                         <router-link class="tip" to="/Book">其他阅读</router-link>
                     </el-dropdown-item>
-                    <el-dropdown-item>
-                        <router-link class="tip" to="/Way">南部经典</router-link>
-                    </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
 

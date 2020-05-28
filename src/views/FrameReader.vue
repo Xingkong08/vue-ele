@@ -38,18 +38,6 @@
                         url: 'data/佛陀传/Text/text00002.html'
                     },
                     {
-                        name: '《中阿含经》',
-                        url: 'data/中阿含经/toc.xhtml'
-                    },
-                    {
-                        name: '《古文观止》',
-                        url: 'data/古文观止/text/part0000.html'
-                    },
-                    {
-                        name: '《定慧之路》',
-                        url: 'data/定慧之路/Text/TOC.xhtml'
-                    },
-                    {
                         name: '《中阿含—白话》',
                         url: 'data/中阿含_白话/zahj.html'
                     },
@@ -80,14 +68,6 @@
                     {
                         name: '《佛说稻芉经》',
                         url: 'data/经/Text/佛说稻芉经.xhtml'
-                    },
-                    {
-                        name: '《印光法师文钞》',
-                        url: 'data/印光法师文钞/Text/text00000.html'
-                    },
-                    {
-                        name: '《人体使用手册》',
-                        url: 'data/人体使用手册/Text/part0000.html'
                     },
                     {
                         name: '《十法界概述》',
