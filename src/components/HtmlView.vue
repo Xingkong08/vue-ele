@@ -1,6 +1,6 @@
 <template>
     <div>
-<!--        <mu-circular-progress :size="40" v-if="loading"/>-->
+        <!--        <mu-circular-progress :size="40" v-if="loading"/>-->
         <p v-html="html"></p>
     </div>
 </template>

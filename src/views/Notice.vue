@@ -16,7 +16,12 @@
 
 <style scoped>
     .xuzhi {
+        left: 50%;
+        top: 50px;
+        text-align: justify;
         font-size: 19px;
-        margin: 10px 5%;
+        width: 300px;
+        margin:100px auto;
+        font-family: 宋体;
     }
 </style>

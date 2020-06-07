@@ -1,51 +1,53 @@
 <template>
     <div>
-        <div class="header">
-
-            <el-button class="btn" @click="drawer = true" type="text" icon="el-icon-collection"
-                       style="margin-left: 16px;">目录
-            </el-button>
-
-            <el-dropdown class="fb" trigger="click" @command="getBook">
-                <el-button class="btn" type="text" icon="el-icon-notebook-2" :hide-on-click="true">选择书籍</el-button>
-                <el-dropdown-menu slot="dropdown">
-
-                    <el-tree :data="ebookData" class="tree" :highlight-current="true" :accordion="true"
-                             :props="defaultProps" @node-click="handleNodeClick"></el-tree>
-
-                </el-dropdown-menu>
-            </el-dropdown>
-
-            <el-button class="icon" type="text" icon="el-icon-zoom-in" @click="zoomIn"></el-button>
-            <el-button class="icon" type="text" icon="el-icon-zoom-out" @click="zoomOut"></el-button>
-            <el-button class="icon" type="text" icon="el-icon-sunny" @click="switchColor"></el-button>
-        </div>
-
-
-        <el-drawer class="drawer" v-bind:style="styleObject" size="85%"
-                   :visible.sync="drawer" direction="ltr" :show-close="false">
-            <div slot="title" class="draw-title">
-                <span class="title">目录</span>
-                <span class="title">书签</span>
-                <span class="title">笔记</span>
-            </div>
-            <div style="height: 650px;overflow-y: scroll" v-html="indexHtml"></div>
-        </el-drawer>
-
         <div class="reader" v-bind:style="styleObject" ref="container" @mousewheel="myscroll">
             <div v-html="contentHtml"></div>
         </div>
 
+        <div v-show="catlogSwitch">
+            <div class="header">
+                <div style="float: right">
+                    <el-dropdown trigger="click" @command="getBook" style="margin-right: 30px">
+                        <el-button class="btn" type="text" icon="el-icon-notebook-2" :hide-on-click="true">选择书籍
+                        </el-button>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-tree :data="ebookData" class="tree h-scroll" :highlight-current="true" :accordion="true"
+                                     :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                    <el-button class="icon" type="text" icon="el-icon-zoom-in" @click="zoomIn"></el-button>
+                    <el-button class="icon" type="text" icon="el-icon-zoom-out" @click="zoomOut"></el-button>
+                    <el-button v-show="false" class="icon" type="text" icon="el-icon-sunny"
+                               @click="switchColor"></el-button>
+                </div>
+            </div>
+            <div class="chapterContent h-scroll" v-html="indexHtml"></div>
+        </div>
+
+
+        <el-button v-show="closeWin" class="floatButton" icon="el-icon-s-fold" circle @click="showContent"></el-button>
+
+        <!--        以下是非用户功能区    -->
+        <watcher v-model="closeWin" :current="winWidth" :base="1450"></watcher>
+        <watcher v-model="closeWin2" :current="winWidth" :base="800"></watcher>
     </div>
 </template>
 
 <script>
-
     export default {
         name: "Reader",
+        props: {
+            winWidth: {
+                type: Number
+            }
+        },
 
         data() {
             return {
+                closeWin: true,
+                closeWin2: false,
+                catlogSwitch: true,
+
                 bookFolder: "",
                 contentPath: "",
                 indexPath: "",
@@ -61,7 +63,7 @@
                 baseFontSize: 1.2,
                 styleObject: {
                     fontSize: '1.2em',
-                    backgroundColor: "white",
+                    backgroundColor: "",
                 },
 
                 ebookData: [],
@@ -74,6 +76,11 @@
         },
 
         methods: {
+
+            showContent() {
+                this.catlogSwitch = !this.catlogSwitch;
+                // console.log("点击了一下")
+            },
 
             //选择书籍
             handleNodeClick(data, node, obj) {
@@ -110,24 +117,64 @@
 
             //切换背景色
             switchColor() {
-                if (this.styleObject.backgroundColor == "black") {
-                    this.styleObject.color = "black";
-                    this.styleObject.backgroundColor = "white";
+                if (this.styleObject.backgroundColor == "#161616") {
+                    this.styleObject.color = "#161616";
+                    this.styleObject.backgroundColor = "#f5f1e5";
                 } else {
-                    this.styleObject.backgroundColor = "black";
+                    this.styleObject.backgroundColor = "#161616";
                     this.styleObject.color = "gainsboro";
                 }
 
             },
+
+            getElementTop(element) {
+                var actualTop = element.offsetTop;    //这是获取元素距父元素顶部的距离
+                var current = element.offsetParent;   //这是获取父元素
+                while (current !== null) {      //当它上面有元素时就继续执行
+                    actualTop += current.offsetTop;   //这是获取父元素距它的父元素顶部的距离累加起来
+                    current = current.offsetParent;//继续找父元素
+                }
+                return actualTop;
+            },
             //字体放大
             zoomIn() {
+                let element = this.getTopElement(document);
                 this.baseFontSize += 0.05;
                 this.styleObject.fontSize = this.baseFontSize + "em";
+                this.scrollToElement(element, 50, window);
             },
             //字体缩小
             zoomOut() {
+                let element = this.getTopElement(document);
                 this.baseFontSize -= 0.05;
                 this.styleObject.fontSize = this.baseFontSize + "em";
+                this.scrollToElement(element, 50, window)
+            },
+
+
+            getTopElement(docc) {
+                let x = 100;
+                let element = null;
+                for (let i = 51; i < 500; i++) {
+                    element = docc.elementFromPoint(x, i);
+                    if (element.tagName === "H1" || element.tagName === "P") {
+                        break;
+                    }
+                }
+                return element;
+            },
+
+
+            scrollToElement(element, offset, win) {
+                setTimeout(() => {
+                    if (element) {
+                        let pose = this.getElementTop(element) - offset;
+                        win.scrollTo({
+                            top: pose,
+                            behavior: "smooth"
+                        });
+                    }
+                }, 10);
             },
 
             //切换章节
@@ -146,13 +193,19 @@
                     pos = document.getElementById(id);
                     if (pos != null) {
                         pos.scrollIntoView();
+                        scrollBy(0, -50)
                     }
                 } else {
                     if (pos != null) {
                         pos.scrollIntoView();
+                        scrollBy(0, -50)
+
                     }
                 }
 
+                if (this.closeWin) {
+                    this.catlogSwitch = false;
+                }
                 this.drawer = false;
             },
 
@@ -263,20 +316,38 @@
             },
         },
 
+        watch: {
+            closeWin(val, oldVal) {
+                if (val) {
+                    this.catlogSwitch = false;
+                    this.styleObject.marginRight = "0";
+                } else {
+                    this.styleObject.marginRight = "20%";
+                    this.catlogSwitch = true;
+                }
+            },
+        },
+
+
         created() {
             //将方法注册成全局方法 （自己猜的）
             let _this = this;
             window.switchChapter = _this.switchChapter;
-            this.initPage()
+            this.initPage();
             // alert(window.innerHeight - 90)
+            if (this.winWidth < 1400) {
+                this.catlogSwitch = false;
+                this.styleObject.marginRight = "0";
+            }
         },
 
 
         mounted: function () {
             //在mounted钩子函数绑定滚动条事件
             this.$refs.container.addEventListener('scroll', this.myscroll);
-
         }
+
+
     }
 </script>
 
@@ -284,79 +355,75 @@
     @import "../assets/ebook.css";
 
     .tree {
-        margin: 5px 10px;
-        font-size: 20px;
-        font-weight: bolder;
         max-height: 500px;
         overflow-y: scroll;
     }
 
     /deep/ .el-tree-node__label {
-        font-size: 18px;
-        font-weight: bold;
-        /*color: #009d9d;*/
+        /*color: #008080;*/
+        font-size: 16px;
+        line-height: 20px;
     }
 
     /deep/ .el-tree-node__content {
-        margin: 8px 5px;
-    }
-
-    .draw-title {
-        text-align: center;
-        padding: 10px;
-        border-bottom: 1px solid gainsboro;
-    }
-
-    .title {
-        font-weight: bolder;
-        font-size: 17px;
-        margin: 0 20px;
-        cursor: pointer;
-        /*-webkit-user-select:none;*/
-        /*user-select:none;*/
-    }
-
-    /deep/ .el-drawer__header {
-        margin: 0;
-        padding: 0;
-        color: black;
+        font-weight: bold;
+        padding: 6px 10px;
     }
 
     .reader {
-        margin: 40px 0 0 0;
-        padding: 10px 20px;
-        height: 630px;
-        overflow-y: scroll;
-    }
-
-    .drawer {
-        max-width: 700px;
+        font-family: 宋体;
+        margin-top: 40px;
+        margin-right: 20%;
+        padding: 0 20px;
     }
 
 
     .btn {
-        margin-left: 15px;
         font-size: 20px;
         padding: 0;
-        line-height: 40px;
+        line-height: 50px;
         font-weight: bold;
     }
 
 
     .icon {
-        margin-right: 30px;
+        margin-right: 20px;
         font-size: 25px;
-        float: right;
         padding: 0;
-        line-height: 40px;
+        line-height: 50px;
     }
 
     .header {
-        width: 100%;
-        height: 40px;
+        width: 250px;
+        height: 50px;
         position: fixed;
-        top: 0;
-        border-bottom: 1px solid gainsboro;
+        top: 50px;
+        right: 0;
+        padding-right: 60px;
+        /*background-color: #f5f1e5;*/
+        background-color: rgba(41, 41, 41, 0.12);
+        border-radius: 10px;
     }
 
+    .chapterContent {
+        z-index: 1;
+        position: fixed;
+        top: 120px;
+        right: 0;
+        height: 75%;
+        width: 300px;
+        overflow: auto;
+        padding: 3px;
+        background-color: #f5f1e5;
+        border-radius: 10px;
+        box-shadow: -2px 2px 5px #b6b3ab;
+    }
+
+
+    .floatButton {
+        font-size: 23px;
+        position: fixed;
+        right: 10px;
+        top: 50px;
+    }
 </style>
