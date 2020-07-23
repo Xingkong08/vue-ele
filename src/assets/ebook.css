@@ -33,10 +33,16 @@ body {
 	padding: 10px 20px 50px 20px;
 	font-size: 1.100em;
 }
-
+*/
 a {
     text-decoration: none;
-}*/
+    cursor: pointer;
+}
+
+a:hover{
+    color: #3399ff;
+    text-decoration: underline;
+}
 
 /*一级标题*/
 h1.Sequence, h1.chapterCaption, p.chapterCaption {
@@ -146,11 +152,12 @@ h6.sixTitle, p.sixTitle {
     /* letter-spacing:auto; */
 }
 
-span.empty{
+span.empty {
     padding: 0 1em;
 }
+
 /*注释*/
-span.note{
+span.note {
     font-size: 0.850em;
     text-align: justify;
     line-height: 1.5000em;
@@ -203,19 +210,19 @@ span.subScript {
 .indentS {
     font-size: 1.1em;
     font-weight: bold;
-	text-indent: 0.5em;
+    text-indent: 0.5em;
     margin: 5pt 0;
 }
 
 /*其它缩进36像素*/
 .indentT {
-	text-indent: 2em;
+    text-indent: 2em;
     margin: 5pt 0;
 }
 
 /*其它缩进60像素*/
 .indentF {
-	text-indent: 4em;
+    text-indent: 4em;
     margin: 5pt 0;
 }
 
@@ -223,8 +230,6 @@ span.subScript {
 .rareFont {
     width: 0.8em;
 }
-
-
 
 
 /*覆盖最新*//*覆盖最新*//*覆盖最新*//*覆盖最新*//*覆盖最新*//*覆盖最新*/
@@ -397,18 +402,20 @@ p.annotation {
 
 .h-scroll::-webkit-scrollbar {
     /*滚动条整体样式*/
-    width : 5px;  /*高宽分别对应横竖滚动条的尺寸*/
+    width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
     height: 5px;
 }
+
 .h-scroll::-webkit-scrollbar-thumb {
     /*滚动条里面小方块*/
     border-radius: 10px;
-    box-shadow   : inset 0 0 5px rgba(117, 117, 117, 0.2);
-    background   : #b0b0b0;
+    box-shadow: inset 0 0 5px rgba(117, 117, 117, 0.2);
+    background: #b0b0b0;
 }
+
 .h-scroll::-webkit-scrollbar-track {
     /*滚动条里面轨道*/
-    box-shadow   : inset 0 0 5px rgba(185, 185, 185, 0.12);
-    background   : #ededed;
+    box-shadow: inset 0 0 5px rgba(185, 185, 185, 0.12);
+    background: #ededed;
     border-radius: 10px;
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="header" v-show="catlogSwitch">
+        <div class="header" v-show="toolSwitch">
             <el-dropdown class="fb" trigger="click" @command="getBook">
                 <el-button class="btn" type="text" icon="el-icon-notebook-2">选择书籍</el-button>
                 <el-dropdown-menu slot="dropdown" class="h-scroll" style="max-height: 500px; overflow-y: scroll;">
@@ -33,7 +33,7 @@
         data() {
             return {
                 closeWin: true,
-                catlogSwitch: false,
+                toolSwitch: false,
 
                 font: {
                     size: 1
@@ -41,45 +41,12 @@
                 books: [
                     {
                         name: '《佛陀传》',
-                        url: 'data/佛陀传/Text/text00002.html'
+                        url: 'data/epub/佛陀传/Text/text00002.html'
                     },
                     {
                         name: '《印光法师文钞》',
-                        url: 'data/印光法师文钞/Text/text00000.html'
-                    },
-                    {
-                        name: '《中阿含—白话》',
-                        url: 'data/中阿含_白话/zahj.html'
-                    },
-                    {
-                        name: '《长阿含—白话》',
-                        url: 'data/长阿含经_白话/cahj.html'
-                    },
-                    {
-                        name: '《杂阿含—白话》',
-                        url: 'data/杂阿含_白话/zahj.html'
-                    },
-                    {
-                        name: '《增一阿含—白话》',
-                        url: 'data/增一阿含_白话/zyahj.html'
-                    },
-                    {
-                        name: '《佛遗教经》',
-                        url: 'data/经/Text/佛遗教经.xhtml'
-                    },
-                    {
-                        name: '《八大人觉经》',
-                        url: 'data/经/Text/八大人觉经.xhtml'
-                    },
-                    {
-                        name: '《大念处经》',
-                        url: 'data/经/Text/大念处经.xhtml'
-                    },
-                    {
-                        name: '《佛说稻芉经》',
-                        url: 'data/经/Text/佛说稻芉经.xhtml'
-                    },
-
+                        url: 'data/epub/印光法师文钞/Text/text00000.html'
+                    }
                 ],
 
                 url: "",
@@ -87,15 +54,15 @@
             };
         },
         created() {
-            this.url = "data/佛陀传/Text/text00002.html";
-            this.urltemp = "data/佛陀传/Text/text00002.html"
+            this.url = "data/epub/佛陀传/Text/text00002.html";
+            this.urltemp = "data/epub/佛陀传/Text/text00002.html"
         },
         updated() {
             // console.log("我刷新了")
         },
         methods: {
             showContent() {
-                this.catlogSwitch = !this.catlogSwitch;
+                this.toolSwitch = !this.toolSwitch;
                 // this.setPadding();
                 // console.log("点击了一下")
             },
@@ -125,6 +92,7 @@
                 //iframe 的地址不改变是不会刷新的
                 this.url = this.urltemp + "?time=" + new Date().getTime();
                 document.getElementById("reader").contentWindow.location.reload(true);
+                this.toolSwitch = false;
                 return Promise.resolve(true);
             },
 
@@ -241,7 +209,7 @@
         right: 0;
         padding-right: 60px;
         border-radius: 10px;
-        background-color: rgba(41, 41, 41, 0.12);
+        background-color: rgba(251, 250, 245, 0.95);
     }
 
     .floatButton {

@@ -1,6 +1,14 @@
 <template>
     <div class="home">
-
+        <!--        <div style="width: 100%;margin:0 auto;">-->
+        <!--            <div class="block">-->
+        <!--                <el-carousel trigger="click" height="500px">-->
+        <!--                    <el-carousel-item v-for="item in 4" :key="item">-->
+        <!--                        <h3 class="small">{{ item }}</h3>-->
+        <!--                    </el-carousel-item>-->
+        <!--                </el-carousel>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div class="h-video" v-for="(each,index) in videoData" :key="index" @click="showList(each)">
             <div class="vlink">{{each.label}}</div>
         </div>
@@ -9,8 +17,10 @@
             <div class="title">{{video.label}}</div>
 
             <img class="img" src="../assets/h-close.png" @click="handleClose" alt="">
-            <div class="episode" v-for="(each,index) in video.mvs" :key=index @click="openWin(each.url)">
-                {{each.episode}}
+            <div class="h-scroll" style="min-height: 200px;max-height: 500px;overflow: auto">
+                <div class="episode" v-for="(each,index) in video.mvs" :key=index @click="openWin(each.url)">
+                    {{each.episode}}
+                </div>
             </div>
         </div>
 
@@ -66,8 +76,7 @@
             },
 
         },
-        computed: {
-        },
+        computed: {},
         created() {
             this.loadData();
         }
@@ -75,6 +84,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "../assets/ebook.css";
 
     .home {
         text-align: center;
@@ -115,12 +125,9 @@
         z-index: 10;
         width: 90%;
         max-width: 500px;
-        min-height: 200px;
-        overflow: auto;
-        background-color: #2a2a2a;
+        background-color: rgba(19, 19, 19, .99);
         padding: 15px 5px;
-
-        position: absolute;
+        position: fixed;
         top: 50%;
         right: 50%;
         transform: translate(50%, -50%);
@@ -135,7 +142,7 @@
         top: 10px;
     }
 
-    .container-episode .img:hover{
+    .container-episode .img:hover {
         width: 27px;
     }
 
@@ -160,6 +167,23 @@
 
     .episode:hover {
         background-color: #3a3a3a;
+    }
+
+
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 500px;
+        margin: 0;
+    }
+
+    .el-carousel__item:nth-child(2n) {
+        background-color: #3686d9;
+    }
+
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #477fcd;
     }
 
 </style>
